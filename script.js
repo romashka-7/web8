@@ -133,7 +133,6 @@ feedbackForm.addEventListener("submit", async (event) => {
   };
 
   try {
-    // Отправка данных на сервер (используем Formcarry)
     const response = await fetch("https://formcarry.com/s/OjUeCJfYQ5x", {
       method: "POST",
       headers: {
@@ -164,44 +163,3 @@ feedbackForm.addEventListener("submit", async (event) => {
     );
   }
 });
-
-// Альтернативный вариант с Slapform (раскомментировать если нужно использовать Slapform)
-/*
-feedbackForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    
-    if (!document.getElementById('privacyPolicy').checked) {
-        showMessage('Необходимо согласие с политикой обработки персональных данных', false);
-        return;
-    }
-    
-    const formData = new FormData(feedbackForm);
-    const data = Object.fromEntries(formData.entries());
-    
-    try {
-        const response = await fetch('https://api.slapform.com/ВАШ_EMAIL', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok) {
-            showMessage('Сообщение успешно отправлено!', true);
-            clearFormData();
-            
-            setTimeout(() => {
-                closeModal();
-            }, 2000);
-        } else {
-            showMessage('Ошибка при отправке сообщения. Попробуйте еще раз.', false);
-        }
-    } catch (error) {
-        console.error('Ошибка:', error);
-        showMessage('Произошла ошибка при отправке. Проверьте подключение к интернету.', false);
-    }
-});
-*/

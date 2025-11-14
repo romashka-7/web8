@@ -1,21 +1,13 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: "Arial", sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 30px;
+  background-color: white;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 200px;
   text-align: center;
-  padding: 50px 40px;
+  margin-top: 350px;
 }
 
 h1 {
@@ -23,70 +15,55 @@ h1 {
   margin-bottom: 30px;
 }
 
-.btn-primary {
-  background-color: #3dff02;
+button {
+  background-color: #00eaff;
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s;
 }
 
-.btn-primary:hover {
-  background-color: #00b309;
+button:hover {
+  background-color: #00aab3;
 }
 
-/* Стили модального окна */
+/* Модальное окно */
 .modal {
   display: none;
   position: fixed;
-  z-index: 1000;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  overflow: auto;
 }
 
 .modal-content {
-  background-color: #fff;
-  margin: 5% auto;
-  padding: 30px;
-  border-radius: 10px;
+  background-color: white;
+  margin: 50px auto;
+  padding: 20px;
   width: 90%;
-  max-width: 600px;
+  max-width: 500px;
   position: relative;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .close {
   position: absolute;
-  right: 20px;
-  top: 15px;
-  font-size: 28px;
-  font-weight: bold;
+  right: 10px;
+  top: 5px;
+  font-size: 24px;
   cursor: pointer;
-  color: #aaa;
 }
 
-.close:hover {
-  color: #000;
-}
-
-/* Стили формы */
-.form-group {
-  margin-bottom: 20px;
-  text-align: left;
+/* Форма */
+form div {
+  margin-bottom: 15px;
 }
 
 label {
   display: block;
   margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
 }
 
 input[type="text"],
@@ -94,83 +71,43 @@ input[type="email"],
 input[type="number"],
 textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
 }
 
 textarea {
   resize: vertical;
-  min-height: 100px;
 }
 
-.checkbox-group {
-  display: flex;
-  align-items: flex-start;
-}
-
-.checkbox-group input {
+input[type="checkbox"] {
   margin-right: 10px;
-  margin-top: 5px;
-}
-
-.checkbox-group label {
-  font-weight: normal;
-  margin-bottom: 0;
 }
 
 /* Сообщения */
-.message-container {
-  margin-top: 20px;
-  padding: 15px;
-  border-radius: 5px;
+#messageContainer {
+  margin-top: 15px;
+  padding: 10px;
   display: none;
 }
 
 .message-success {
   background-color: #d4edda;
   color: #155724;
-  border: 1px solid #c3e6cb;
 }
 
 .message-error {
   background-color: #f8d7da;
   color: #721c24;
-  border: 1px solid #f5c6cb;
 }
 
-/* Адаптивность для мобильных устройств */
+/* Мобильная версия */
 @media (max-width: 768px) {
   .modal-content {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-    padding: 20px;
-    overflow-y: auto;
-  }
-
-  body {
-    padding: 10px;
+    margin: 20px auto;
+    padding: 15px;
   }
 
   .container {
-    padding: 20px 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .modal-content {
-    padding: 15px;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .btn-primary {
-    width: 100%;
-    padding: 15px;
+    margin-top: 50px;
   }
 }
