@@ -1,43 +1,34 @@
-// Элементы DOM
 const openFormBtn = document.getElementById("openFormBtn");
 const feedbackModal = document.getElementById("feedbackModal");
 const closeBtn = document.querySelector(".close");
 const feedbackForm = document.getElementById("feedbackForm");
 const messageContainer = document.getElementById("messageContainer");
 
-// Ключ для LocalStorage
 const STORAGE_KEY = "feedbackFormData";
 
-// Функция для открытия модального окна
 function openModal() {
   feedbackModal.style.display = "block";
   restoreFormData();
-  // Добавляем состояние в историю браузера
   history.pushState({ modalOpen: true }, "", "#feedback");
 }
 
-// Функция для закрытия модального окна
 function closeModal() {
   feedbackModal.style.display = "none";
   clearMessage();
-  // Возвращаем URL к исходному состоянию
   if (window.location.hash === "#feedback") {
     history.back();
   }
 }
 
-// Обработчики событий для открытия/закрытия модального окна
 openFormBtn.addEventListener("click", openModal);
 closeBtn.addEventListener("click", closeModal);
 
-// Закрытие модального окна при клике вне его области
 window.addEventListener("click", (event) => {
   if (event.target === feedbackModal) {
     closeModal();
   }
 });
 
-// Обработка кнопки "Назад" в браузере
 window.addEventListener("popstate", (event) => {
   if (!event.state || !event.state.modalOpen) {
     feedbackModal.style.display = "none";
@@ -45,7 +36,6 @@ window.addEventListener("popstate", (event) => {
   }
 });
 
-// Сохранение данных формы в LocalStorage
 function saveFormData() {
   const formData = {
     fullName: document.getElementById("fullName").value,
@@ -59,7 +49,6 @@ function saveFormData() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
-// Восстановление данных формы из LocalStorage
 function restoreFormData() {
   const savedData = localStorage.getItem(STORAGE_KEY);
 
@@ -76,15 +65,11 @@ function restoreFormData() {
   }
 }
 
-// Очистка данных формы из LocalStorage
 function clearFormData() {
   localStorage.removeItem(STORAGE_KEY);
-
-  // Сброс значений формы
   feedbackForm.reset();
 }
 
-// Отображение сообщения
 function showMessage(message, isSuccess) {
   messageContainer.textContent = message;
   messageContainer.className = `message-container ${
@@ -92,28 +77,23 @@ function showMessage(message, isSuccess) {
   }`;
   messageContainer.style.display = "block";
 
-  // Автоматическое скрытие сообщения через 5 секунд
   setTimeout(() => {
     clearMessage();
   }, 5000);
 }
 
-// Очистка сообщения
 function clearMessage() {
   messageContainer.style.display = "none";
   messageContainer.textContent = "";
   messageContainer.className = "message-container";
 }
 
-// Обработчик изменения формы для сохранения данных
 feedbackForm.addEventListener("input", saveFormData);
 feedbackForm.addEventListener("change", saveFormData);
 
-// Обработчик отправки формы
 feedbackForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  // Проверка согласия с политикой
   if (!document.getElementById("privacyPolicy").checked) {
     showMessage(
       "Необходимо согласие с политикой обработки персональных данных",
@@ -122,7 +102,6 @@ feedbackForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  // Сбор данных формы
   const formData = new FormData(feedbackForm);
   const data = {
     fullName: formData.get("fullName"),
@@ -148,7 +127,6 @@ feedbackForm.addEventListener("submit", async (event) => {
       showMessage("Сообщение успешно отправлено!", true);
       clearFormData();
 
-      // Закрытие формы через 2 секунды после успешной отправки
       setTimeout(() => {
         closeModal();
       }, 2000);
